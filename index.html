@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<title>AWS-as-infographic</title>
+
+	<style>
+		#map {
+			height: 100vh;
+		}
+		#btnFlashCards {
+			position: fixed;
+			bottom: 50px;
+			right: 50px;
+			padding: 50px;
+			z-index: 999;
+		}
+		#swiperFlashCards {
+			background-color: rgba(204, 204, 204, 0.5);
+			display: none;
+			justify-items: center;
+			align-items: center;
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 1000;
+
+		}
+		.swiper {
+			width: 600px;
+			height: 300px;
+		}
+		
+		.swiper-slide {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 18px;
+			font-size: 22px;
+			font-weight: bold;
+			color: #fff;
+		}
+
+		.swiper-slide:nth-child(1n) {
+		background-color: rgb(206, 17, 17);
+		}
+
+		.swiper-slide:nth-child(2n) {
+		background-color: rgb(0, 140, 255);
+		}
+
+		.swiper-slide:nth-child(3n) {
+		background-color: rgb(10, 184, 111);
+		}
+
+		.swiper-slide:nth-child(4n) {
+		background-color: rgb(211, 122, 7);
+		}
+
+		.swiper-slide:nth-child(5n) {
+		background-color: rgb(118, 163, 12);
+		}
+
+		.swiper-slide:nth-child(6n) {
+		background-color: rgb(180, 10, 47);
+		}
+
+		.swiper-slide:nth-child(7n) {
+		background-color: rgb(35, 99, 19);
+		}
+
+		.swiper-slide:nth-child(8n) {
+		background-color: rgb(0, 68, 255);
+		}
+
+		.swiper-slide:nth-child(9n) {
+		background-color: rgb(218, 12, 218);
+		}
+
+		.swiper-slide:nth-child(10n) {
+		background-color: rgb(54, 94, 77);
+		}
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+	<svg
+		data-src="./infographic/s3-aws-cheatsheet.svg"
+		id="infographic"
+		oniconload="showLeafLetMap()"
+	></svg>
+
+	<button id="btnFlashCards">Flash cards</button>
+
+	<section id="swiperFlashCards">
+		<div class="swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+			</div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+		</div>
+	</section>
+
+	<script type="text/javascript" src="https://unpkg.com/external-svg-loader@latest/svg-loader.min.js" async></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+	<script>
+		window.addEventListener("DOMContentLoaded", (event) => {
+			const swiperFlashCards = document.getElementById('swiperFlashCards');
+			const btnFlashCards = document.getElementById('btnFlashCards');
+			btnFlashCards.addEventListener('click', () => {
+				swiperFlashCards.style.display = 'flex';
+				initSwiper();
+			});
+		});
+
+		function showLeafLetMap() {
+			// create the map
+			const map = L.map('map', {
+				center: [50, 50],
+				zoom: 3,
+				crs: L.CRS.Simple, // https://leafletjs.com/examples/crs-simple/crs-simple.html
+			});
+
+			const svgElement = document.getElementById('infographic');
+			const svgElementBounds = [
+				[0, 0],
+				[100, 100]
+			];
+			L.svgOverlay(svgElement, svgElementBounds).addTo(map);
+		}
+		function initSwiper() {
+			const swiper = new Swiper('.swiper', {
+				direction: 'horizontal',
+				effect: "cards",
+				grabCursor: true,
+				loop: true,
+
+				// If we need pagination
+				// pagination: {
+				// 	el: '.swiper-pagination',
+				// },
+
+				// Navigation arrows
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+
+				// And if we need scrollbar
+				// scrollbar: {
+				// 	el: '.swiper-scrollbar',
+				// },
+			});
+		}
+	</script>
+</body>
+</html>
