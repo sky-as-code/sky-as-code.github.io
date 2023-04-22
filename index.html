@@ -44,59 +44,14 @@
 		.swiper .card-body {
 			height: calc(100% - 102px);
 		}
-		
-		/* .swiper-slide {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border-radius: 18px;
-			font-size: 22px;
-			font-weight: bold;
-			color: #fff;
+		.prevent-select {
+			-webkit-user-select: none; /* Safari */
+			-ms-user-select: none; /* IE 10 and IE 11 */
+			user-select: none; /* Standard syntax */
 		}
-
-		.swiper-slide:nth-child(1n) {
-		background-color: rgb(206, 17, 17);
-		}
-
-		.swiper-slide:nth-child(2n) {
-		background-color: rgb(0, 140, 255);
-		}
-
-		.swiper-slide:nth-child(3n) {
-		background-color: rgb(10, 184, 111);
-		}
-
-		.swiper-slide:nth-child(4n) {
-		background-color: rgb(211, 122, 7);
-		}
-
-		.swiper-slide:nth-child(5n) {
-		background-color: rgb(118, 163, 12);
-		}
-
-		.swiper-slide:nth-child(6n) {
-		background-color: rgb(180, 10, 47);
-		}
-
-		.swiper-slide:nth-child(7n) {
-		background-color: rgb(35, 99, 19);
-		}
-
-		.swiper-slide:nth-child(8n) {
-		background-color: rgb(0, 68, 255);
-		}
-
-		.swiper-slide:nth-child(9n) {
-		background-color: rgb(218, 12, 218);
-		}
-
-		.swiper-slide:nth-child(10n) {
-		background-color: rgb(54, 94, 77);
-		} */
 	</style>
 </head>
-<body>
+<body class="prevent-select">
 	<div id="map"></div>
 	<svg
 		data-src="./infographic/s3-aws-cheatsheet.svg"
@@ -104,7 +59,6 @@
 		oniconload="showLeafLetMap()"
 	></svg>
 
-	<!-- <button data-bs-toggle="modal" data-bs-target="#modalFlashCards">Flash cards</button> -->
 	<div id="btnFlashCards" class="btn-group dropup">
 		<button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#modalFlashCards">
 			<img src="./images/cards.svg" height="30" alt="Flash cards">
@@ -121,61 +75,66 @@
 
 	<section id="modalFlashCards" class="modal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered">
-			<!-- <div class="modal-content"> -->
-				<div class="swiper modal-content" id="swiperFlashCards">
-					<!-- <button id="btnCloseFlashCards" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-					<div class="swiper-wrapper">
-						<!-- <div class="swiper-slide">Slide 1</div>
-						<div class="swiper-slide">Slide 2</div>
-						<div class="swiper-slide">Slide 3</div> -->
-						<div class="card swiper-slide">
-							<header class="card-header d-flex justify-content-between">
-								<div>
-									<button type="button" class="btn-lg">Link</button>
+			<div class="swiper modal-content" id="swiperFlashCards">
+				<div class="swiper-wrapper">
+					<div class="card swiper-slide">
+						<header class="card-header d-flex justify-content-between">
+							<div>
+								<!-- TODO: Link directly to this card -->
+								<!-- <button type="button" class="btn-lg">Link</button> -->
+							</div>
+							<div>
+								<button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+						</header>
+						<main class="card-body">
+							<h5 class="card-title">Special title treatment</h5>
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+								Hint
+							</button>
+							<div style="min-height: 50px;">
+								<div class="collapse" id="collapseWidthExample">
+								<div class="border p-2 mt-2">
+									This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
 								</div>
-								<div>
-									<button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
-							</header>
-							<main class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							</main>
-							<footer class="card-footer text-body-secondary">
-								<a href="#" id="btnShowMap" class="btn btn-primary">Answer on map</a>
-							</footer>
+							</div>
+						</main>
+						<footer class="card-footer d-flex justify-content-end">
+							<a href="#" id="btnShowMap" class="btn btn-primary">Answer on map</a>
+						</footer>
+					</div>
+					<div class="card swiper-slide">
+						<div class="card-header">
+							Featured #2
 						</div>
-						<div class="card swiper-slide">
-							<div class="card-header">
-								Featured #2
-							</div>
-							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-							<div class="card-footer text-body-secondary">
-								2 days ago
-							</div>
+						<div class="card-body">
+							<h5 class="card-title">Special title treatment</h5>
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
 						</div>
-						<div class="card swiper-slide">
-							<div class="card-header">
-								Featured #3
-							</div>
-							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-							<div class="card-footer text-body-secondary">
-								2 days ago
-							</div>
+						<div class="card-footer text-body-secondary">
+							2 days ago
 						</div>
 					</div>
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
+					<div class="card swiper-slide">
+						<div class="card-header">
+							Featured #3
+						</div>
+						<div class="card-body">
+							<h5 class="card-title">Special title treatment</h5>
+							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+						<div class="card-footer text-body-secondary">
+							2 days ago
+						</div>
+					</div>
 				</div>
-			<!-- </div> -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
 		</div>
 	</section>
 
@@ -184,18 +143,16 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+	<script src="./scripts/card-renderer.js"></script>
+	<script src="./scripts/flashcard-manager.js"></script>
 	<script>
 		let infographicMap;
 		let flashCardModal;
 		const mapState = createMapState();
 
 		window.addEventListener("DOMContentLoaded", (event) => {
-			const swiperFlashCards = document.getElementById('swiperFlashCards');
-			const btnFlashCards = document.getElementById('btnFlashCards');
+			// const btnFlashCards = document.getElementById('btnFlashCards');
 			const modelElemFlashCards = document.getElementById('modalFlashCards');
-			// btnFlashCards.addEventListener('click', () => {
-			// 	// swiperFlashCards.style.display = 'flex';
-			// });
 			flashCardModal = new bootstrap.Modal(modelElemFlashCards, {
 				backdrop: 'static',
 			})
@@ -211,13 +168,6 @@
 				zoom: mapState.zoom,
 				crs: L.CRS.Simple, // https://leafletjs.com/examples/crs-simple/crs-simple.html
 			});
-			const svgElement = document.getElementById('infographic');
-			const svgElementBounds = [
-				[0, 0],
-				[100, 100]
-			];
-			L.svgOverlay(svgElement, svgElementBounds).addTo(infographicMap);
-
 			infographicMap
 				.on('zoomend', (evt) => {
 					mapState.zoom = evt.target.getZoom();
@@ -228,7 +178,24 @@
 					Object.assign(mapState, evt.target.getCenter());
 					const queryString = toQueryString(mapState);
 					history.replaceState({}, "", `?${queryString}`);
+				})
+				.whenReady(() => {
+					console.log('Infographic map loaded');
+					loadAndRenderCards('/data/s3.js', onShowAnswer)
+						.then(wrapperElem => {
+							const swiperFlashCards = document.getElementById('swiperFlashCards');
+							swiperFlashCards.replaceChildren(wrapperElem);
+						})
+						.catch(console.error);
 				});
+			
+			const svgElement = document.getElementById('infographic');
+			const svgElementBounds = [
+				[0, 0],
+				[100, 100]
+			];
+			L.svgOverlay(svgElement, svgElementBounds).addTo(infographicMap);
+
 		}
 		function initSwiper() {
 			const swiper = new Swiper('.swiper', {
@@ -268,8 +235,17 @@
 			});
 		}
 
+		function onShowAnswer(answer) {
+			const latlng = L.latLng(answer.lat, answer.lng);
+			flashCardModal.hide();
+			infographicMap.setView(latlng, answer.zoom, {
+				animate: true,
+				duration: 1,
+			});
+		}
+
 		function createMapState() {
-			const pageHref = window.location.search; //"?page=1&query=javascript";
+			const pageHref = window.location.search; //"?zoom=5&lat=50.515625&lng=30.515625";
 			const searchParams = new URLSearchParams(pageHref.substring(pageHref.indexOf('?')));
 			return {
 				zoom: searchParams.get('zoom') ?? 3,
