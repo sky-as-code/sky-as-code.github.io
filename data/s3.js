@@ -17,8 +17,8 @@ export default [
 		id: 'MvlxbNnoz',
 		question: 'How to save KMS cost when using SSE-KMS?',
 		hint: 'Use bucket key',
-		zoom: 7,
-		lat: 35.35546875,
-		lng: 39.8203125,
+		zoom: 6,
+		lat: 36.8984375,
+		lng: 41.71875,
 	},
 ]

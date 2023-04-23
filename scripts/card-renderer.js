@@ -1,25 +1,31 @@
 (() => {
 	function createCardElem(card) {
 		const html = createCardHtml(card);
-		const cardElem = document.createElement('div');
-		cardElem.setAttribute('class', 'card swiper-slide');
+		const cardElem = document.createElement('article');
+		cardElem.setAttribute('class', 'magic-card magic-card-green swiper-slide');
 		cardElem.innerHTML = html;
 		return cardElem;
 	}
 	
 	function createCardHtml(card) {
 		return `
-		<div class="card swiper-slide">
-			<header class="card-header d-flex justify-content-between">
+		<div class="magic-card-inner">
+			<a class="magic-card-link bi bi-link-45deg" href="/" onclick="javascript:void(0)"></a>
+			<a href="#"
+				class="magic-card-answer bi bi-geo-alt-fill btn-card-answer"
+				data-zoom="${card.zoom}"
+				data-lat="${card.lat}"
+				data-lng="${card.lng}"
+			></a>
+			<header class="magic-card-header d-flex justify-content-between">
 				<div>
-					<!-- TODO: Link directly to this card -->
-					<!-- <button type="button" class="btn-lg">Link</button> -->
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
 				</div>
-				<div>
-					<button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
+				<button type="button" class="btn-close btn-lg me-3" data-bs-dismiss="modal" aria-label="Close"></button>
 			</header>
-			<main class="card-body">
+			<main class="magic-card-content">
 				<p class="card-text">${card.question}</p>
 				${!card.hint ? '' : `
 					<button class="btn btn-primary" type="button"
@@ -38,15 +44,6 @@
 					</div>
 				`}
 			</main>
-			<footer class="card-footer d-flex justify-content-end">
-				<a
-					href="#"
-					class="btn btn-primary btn-card-answer"
-					data-zoom="${card.zoom}"
-					data-lat="${card.lat}"
-					data-lng="${card.lng}"
-				>Answer on map</a>
-			</footer>
 		</div>`;
 	}
 

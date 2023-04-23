@@ -5,8 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
+	<link href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" rel="stylesheet" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+	<link href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" rel="stylesheet" />
 	<title>AWS-as-infographic</title>
 
 	<style>
@@ -49,6 +50,115 @@
 			-ms-user-select: none; /* IE 10 and IE 11 */
 			user-select: none; /* Standard syntax */
 		}
+		.magic-card {
+			border: 2px solid black;
+			padding: 10px;
+		}
+		.magic-card-inner {
+			border: 2px solid black;
+			border-radius: 0% 7% 0% 40% / 0% 7% 0% 10%; /* https://9elements.github.io/fancy-border-radius/full-control.html#0.0.10.40-90.90.100.100-. */
+			height: 100%;
+			padding: 0;
+			position: relative;
+		}
+		.magic-card-green {
+			background-color: #8EC744;
+		}
+		.magic-card-green .magic-card-inner::before {
+			background-color: #8EC744;
+			border-top-color: #8EC744;
+			border-left-color: #8EC744;
+		}
+		.magic-card-green .magic-card-inner::after {
+			background-color: #8EC744;
+			border-bottom-color: #8EC744;
+			border-right-color: #8EC744;
+		}
+		.magic-card-green .magic-card-header {
+			background-color: #BBDD90;
+		}
+		.magic-card-red {
+			background-color: #F0393A;
+		}
+		.magic-card-red .magic-card-inner::before {
+			background-color: #F0393A;
+			border-top-color: #F0393A;
+			border-left-color: #F0393A;
+		}
+		.magic-card-red .magic-card-inner::after {
+			background-color: #F0393A;
+			border-bottom-color: #F0393A;
+			border-right-color: #F0393A;
+		}
+		.magic-card-red .magic-card-header {
+			background-color: #F78A83;
+		}
+		.magic-card-inner::before {
+			content: "";
+			border: 4px solid transparent;
+			border-right: 2px solid black;
+			border-bottom: 2px solid black;
+			position: absolute;
+			top: -3px;
+			left: -3px;
+			width: 50px;
+			height: 50px;
+			border-radius: 0% 0% 100% 0% / 0% 0% 100% 0%;
+		}
+		.magic-card-inner::after {
+			content: "";
+			border: 4px solid transparent;
+			border-left: 2px solid black;
+			border-top: 2px solid black;
+			position: absolute;
+			bottom: -3px;
+			right: -3px;
+			width: 50px;
+			height: 50px;
+			border-radius: 20% 0% 0% 0% / 20% 0% 0% 0% ;
+		}
+		.magic-card-header {
+			border-radius: 0% 7% 0% 0% / 0% 70% 0% 0%;
+			height: 65px;
+			padding-left: 55px;
+			padding-top: 10px;
+		}
+		.magic-card-header .bi {
+			margin-right: 10px;
+		}
+		.magic-card-header .bi {
+			color: #F99C59;
+			border: 1px solid gray;
+			border-radius: 50%;
+			padding: 0 3px 1px;
+		}
+		.magic-card-content {
+			background-color: #FAC59D;
+			border-top: 2px solid black;
+			border-radius: 50% 50% 0% 38% / 5% 5% 0% 11%;
+			position: relative;
+			top: -5%;
+			padding: 5% 10px 10%;
+			height: calc(100% - 44px);
+		}
+		.magic-card-link {
+			color: black;
+			cursor: pointer;
+			font-size: 2.5em;
+			position: absolute;
+			top: -14px;
+			left: -2px;
+			z-index: 1;
+		}
+		.magic-card-answer {
+			color: black;
+			cursor: pointer;
+			font-size: 2.5em;
+			position: absolute;
+			bottom: -10px;
+			right: 0;
+			z-index: 1;
+		}
 	</style>
 </head>
 <body class="prevent-select">
@@ -77,34 +187,35 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="swiper modal-content" id="swiperFlashCards">
 				<div class="swiper-wrapper">
-					<div class="card swiper-slide">
-						<header class="card-header d-flex justify-content-between">
-							<div>
-								<!-- TODO: Link directly to this card -->
-								<!-- <button type="button" class="btn-lg">Link</button> -->
-							</div>
-							<div>
-								<button type="button" class="btn-close btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-						</header>
-						<main class="card-body">
-							<h5 class="card-title">Special title treatment</h5>
-							<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-								Hint
-							</button>
-							<div style="min-height: 50px;">
-								<div class="collapse" id="collapseWidthExample">
-								<div class="border p-2 mt-2">
-									This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+					<article class="magic-card magic-card-green swiper-slide">
+						<div class="magic-card-inner">
+							<a class="magic-card-link bi bi-link-45deg" href="#"></a>
+							<a class="magic-card-answer bi bi-geo-alt-fill" href="#"></a>
+							<header class="magic-card-header d-flex justify-content-between">
+								<div>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
+									<i class="bi bi-star-fill"></i>
 								</div>
+								<button type="button" class="btn-close btn-lg me-3" data-bs-dismiss="modal" aria-label="Close"></button>
+							</header>
+							<main class="magic-card-content">
+								<h5 class="card-title">Special title treatment</h5>
+								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+								<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+									Hint
+								</button>
+								<div style="min-height: 50px;">
+									<div class="collapse" id="collapseWidthExample">
+									<div class="border p-2 mt-2">
+										This is some placeholder content for a horizontal collapse. It's hidden by default and shown when triggered.
+									</div>
+									</div>
 								</div>
-							</div>
-						</main>
-						<footer class="card-footer d-flex justify-content-end">
-							<a href="#" id="btnShowMap" class="btn btn-primary">Answer on map</a>
-						</footer>
-					</div>
+							</main>
+						</div>
+					</article>
 					<div class="card swiper-slide">
 						<div class="card-header">
 							Featured #2
@@ -151,7 +262,6 @@
 		const mapState = createMapState();
 
 		window.addEventListener("DOMContentLoaded", (event) => {
-			// const btnFlashCards = document.getElementById('btnFlashCards');
 			const modelElemFlashCards = document.getElementById('modalFlashCards');
 			flashCardModal = new bootstrap.Modal(modelElemFlashCards, {
 				backdrop: 'static',
@@ -159,7 +269,6 @@
 			modelElemFlashCards.addEventListener('shown.bs.modal', event => {
 				initSwiper();
 			});
-			initBtnShowMap();
 		});
 
 		function showLeafLetMap() {
@@ -182,9 +291,10 @@
 				.whenReady(() => {
 					console.log('Infographic map loaded');
 					loadAndRenderCards('/data/s3.js', onShowAnswer)
-						.then(wrapperElem => {
+						.then(newWrapperElem => {
 							const swiperFlashCards = document.getElementById('swiperFlashCards');
-							swiperFlashCards.replaceChildren(wrapperElem);
+							const curWrapperElem = swiperFlashCards.querySelector('.swiper-wrapper');
+							curWrapperElem.replaceWith(newWrapperElem);
 						})
 						.catch(console.error);
 				});
@@ -204,34 +314,11 @@
 				grabCursor: true,
 				loop: true,
 
-				// If we need pagination
-				// pagination: {
-				// 	el: '.swiper-pagination',
-				// },
-
 				// Navigation arrows
 				navigation: {
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev',
 				},
-
-				// And if we need scrollbar
-				// scrollbar: {
-				// 	el: '.swiper-scrollbar',
-				// },
-			});
-		}
-		
-		function initBtnShowMap() {
-			const latlng = L.latLng(50.5, 30.5);
-			const btnShowMap = document.getElementById('btnShowMap');
-			btnShowMap.addEventListener('click', (evt) => {
-				evt.preventDefault();
-				flashCardModal.hide();
-				infographicMap.setView(latlng, 5, {
-					animate: true,
-					duration: 1,
-				});
 			});
 		}
 
