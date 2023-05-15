@@ -1,6 +1,9 @@
 :root {
 	--swiper-navigation-sides-offset: -5vw;
 }
+body {
+	overflow: hidden;
+}
 #map {
 	height: 100vh;
 }
