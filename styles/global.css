@@ -1,0 +1,148 @@
+:root {
+	--swiper-navigation-sides-offset: -5vw;
+}
+#map {
+	height: 100vh;
+}
+#btnFlashCards {
+	position: fixed;
+	bottom: 5%;
+	right: 5%;
+	z-index: 999;
+}
+#swiperFlashCards {
+	background-color: transparent;
+	border: none;
+}
+#btnCloseFlashCards {
+	position: fixed;
+	top: -2.5em;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	background-size: 30px;
+	opacity: 1;
+}
+.swiper {
+	max-width: 500px;
+	max-height: 600px;
+	width: 90vw;
+	height: 70vh;
+}
+.swiper .card-body {
+	height: calc(100% - 102px);
+}
+.prevent-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
+}
+.magic-card {
+	border: 2px solid black;
+	padding: 10px;
+}
+.magic-card-inner {
+	border: 2px solid black;
+	border-radius: 0% 7% 0% 40% / 0% 7% 0% 10%; /* https://9elements.github.io/fancy-border-radius/full-control.html#0.0.10.40-90.90.100.100-. */
+	height: 100%;
+	padding: 0;
+	position: relative;
+}
+.magic-card-green {
+	background-color: #8EC744;
+}
+.magic-card-green .magic-card-inner::before {
+	background-color: #8EC744;
+	border-top-color: #8EC744;
+	border-left-color: #8EC744;
+}
+.magic-card-green .magic-card-inner::after {
+	background-color: #8EC744;
+	border-bottom-color: #8EC744;
+	border-right-color: #8EC744;
+}
+.magic-card-green .magic-card-header {
+	background-color: #BBDD90;
+}
+.magic-card-red {
+	background-color: #F0393A;
+}
+.magic-card-red .magic-card-inner::before {
+	background-color: #F0393A;
+	border-top-color: #F0393A;
+	border-left-color: #F0393A;
+}
+.magic-card-red .magic-card-inner::after {
+	background-color: #F0393A;
+	border-bottom-color: #F0393A;
+	border-right-color: #F0393A;
+}
+.magic-card-red .magic-card-header {
+	background-color: #F78A83;
+}
+.magic-card-inner::before {
+	content: "";
+	border: 4px solid transparent;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	width: 50px;
+	height: 50px;
+	border-radius: 0% 0% 100% 0% / 0% 0% 100% 0%;
+}
+.magic-card-inner::after {
+	content: "";
+	border: 4px solid transparent;
+	border-left: 2px solid black;
+	border-top: 2px solid black;
+	position: absolute;
+	bottom: -3px;
+	right: -3px;
+	width: 50px;
+	height: 50px;
+	border-radius: 20% 0% 0% 0% / 20% 0% 0% 0% ;
+}
+.magic-card-header {
+	border-radius: 0% 7% 0% 0% / 0% 70% 0% 0%;
+	height: 65px;
+	padding-left: 55px;
+	padding-top: 10px;
+}
+.magic-card-header .bi {
+	margin-right: 10px;
+}
+.magic-card-header .bi {
+	color: #F99C59;
+	border: 1px solid gray;
+	border-radius: 50%;
+	padding: 0 3px 1px;
+}
+.magic-card-content {
+	background-color: #FAC59D;
+	border-top: 2px solid black;
+	border-radius: 50% 50% 0% 38% / 5% 5% 0% 11%;
+	position: relative;
+	top: -5%;
+	padding: 5% 10px 10%;
+	height: calc(100% - 44px);
+}
+.magic-card-link {
+	color: black;
+	cursor: pointer;
+	font-size: 2.5em;
+	position: absolute;
+	top: -14px;
+	left: -2px;
+	z-index: 1;
+}
+.magic-card-answer {
+	color: black;
+	cursor: pointer;
+	font-size: 2.5em;
+	position: absolute;
+	bottom: -10px;
+	right: 0;
+	z-index: 1;
+}
